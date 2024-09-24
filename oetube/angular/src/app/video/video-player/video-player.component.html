@@ -1,0 +1,41 @@
+
+    <div class="container" *ngIf="video">
+      <div class="row w-100">
+        <div class="col-video w-100">
+          <div class="video-app w-100">
+            <div class="video-player">
+              <app-video-wrapper
+                [resolutionIndex]="resolutionIndex"
+                [video]="video"
+              ></app-video-wrapper>
+              <app-control-bar
+                [resolutionIndex]="resolutionIndex"
+                (resolutionChanged)="onResolutionChanged($event)"
+                [video]="video"
+              ></app-control-bar>
+            </div>
+          </div>
+      
+  </div>
+ 
+    <!--
+
+    <div *ngIf="playlistId" [ngClass]="{
+      'col-3':true, 'rounded':true, 'col-videos':true,
+      'col-videos__playlist':playlistId
+    }">
+      <div
+
+
+        *ngIf="playlistId"
+
+        class="w-100 text-center fs-4 fw-bolder py-3"
+      >{{ playlist.name }}</div>
+      <app-video-grid
+        [multicolumn]="true"
+        [currentVideoId]="id"
+        [currentPlaylistId]="playlistId"
+      ></app-video-grid>
+    </div>
+  </div>
+    -->

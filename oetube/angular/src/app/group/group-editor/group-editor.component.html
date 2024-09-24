@@ -1,0 +1,101 @@
+<div>
+  <div class="d-flex flex-row justify-content-between my-5">
+    <h4 class>{{ title }}</h4>
+    <app-delete-dialog-button [visible]="inputModel !== undefined" (confirmed)="delete()">
+    </app-delete-dialog-button>
+  </div>
+  <form (submit)="onSubmit($event)">
+    <dx-form [formData]="model" [labelLocation]="'left'">
+      <dxi-item
+      dataField="name"
+      [isRequired]="true"
+      editorType="dxTextBox"
+      [editorOptions]="{ maxLength: val.nameMaxLength }"
+    >
+      <dxi-validation-rule type="required"> </dxi-validation-rule>
+      <dxi-validation-rule
+        type="stringLength"
+        [min]="val.nameMinLength"
+        [max]="val.nameMaxLength"
+        [message]="val.nameMessage"
+      >
+      </dxi-validation-rule>
+    </dxi-item>
+    <dxi-item dataField="description">
+      <div *dxTemplate="let data">
+        <dx-text-area
+          [(value)]="data.component.option('formData')[data.dataField]"
+          [maxLength]="val.descriptionMaxLength"
+          autoResizeEnabled="true"
+        >
+        </dx-text-area>
+      </div>
+      <dxi-validation-rule
+        type="stringLength"
+        [max]="val.descriptionMaxLength"
+        [message]="val.descriptionMessage"
+      >
+      </dxi-validation-rule>
+    </dxi-item>
+      <dxi-item dataField="emailDomains">
+        <div *dxTemplate="let data">
+          <dx-tag-box
+            [(value)]="data.component.option('formData')[data.dataField]"
+            acceptCustomValue="true"
+            validationMessagePosition="bottom"
+            validationMessageMode="always"
+            [(isValid)]="emailDomainsValid"
+            [wrapItemText]="true"
+            [width]="'100%'"
+            tagTemplate="tagTemplate"
+          >
+          <div *dxTemplate="let tagData of 'tagTemplate'" class="dx-tag-content">
+            <div [style.maxWidth]="'20vw'" class="text-break word-break">
+              {{tagData}}
+            </div> 
+            <div class="dx-tag-remove-button"></div>
+        </div>
+          <dx-validator>
+            <dxi-validation-rule type="stringLength" [min]="val.domainMinLength" [max]="val.domainMaxLength" [message]="val.domainMessage">
+            </dxi-validation-rule>
+          </dx-validator>
+          </dx-tag-box>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="image">
+        <div *dxTemplate="let data">
+          <app-image-uploader
+            [name]="data.dataField"
+            [(value)]="data.component.option('formData')[data.dataField]"
+            [defaultImgUrl]="defaultImgUrl"
+          ></app-image-uploader>
+        </div>
+      </dxi-item>
+      <dxi-item dataField="members">
+        <div *dxTemplate="let data">
+          <app-scroll-view-selector-popup
+            [title]="'Edit Members'"
+            [icon]="'edit'"
+            [text]="'edit'"
+            [(value)]="data.component.option('formData')[data.dataField]"
+          >
+            <app-scroll-view [initialLoad]="false">
+              <app-drop-down-search>
+                <app-group-search></app-group-search>
+              </app-drop-down-search>
+              <app-member-data-source [groupId]="inputModel?.id"></app-member-data-source>
+              <app-scroll-view-contents>
+                <app-user-contents [contextNavigation]="true"></app-user-contents>
+              </app-scroll-view-contents>
+            </app-scroll-view>
+          </app-scroll-view-selector-popup>
+        </div>
+      </dxi-item>
+      <dxi-item
+        itemType="button"
+        [buttonOptions]="submitButtonOptions"
+        onClick="onSubmit($event)"
+      ></dxi-item>
+    </dx-form>
+  </form>
+</div>
