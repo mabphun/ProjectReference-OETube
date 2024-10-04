@@ -1,4 +1,4 @@
-# OETube bemutatás
+# OETube
 
 ## Projekt megvalósításának folyamatai
 A fejlesztés ideje alatt heti egy (néha kettő) "Standup" meetingre került sor, melyeken a csapat minden résztvevője beszámol a munkájáról, az új feladatok kiírásra kerülnek és problémák megbeszélése, megoldása.
