@@ -11,4 +11,5 @@ A fejlesztés ideje alatt heti egy (néha kettő) "Standup" meetingre került so
 - Kivételkezelés (Backend)
 
 ## Hivatkozások
-Az eredeti `README` a következő útvonalon elérhető: [README-Original](README-Original.md)
+Az eredeti `README` itt érhető el: [README-Original](README-Original.md)
+Az alkalmazás beüzelemelése itt érhető el: [Beüzemelési Útmutató](README-Original.md#%C3%BCzemeltet%C3%A9s)
